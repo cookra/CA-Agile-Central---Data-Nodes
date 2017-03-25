@@ -1,32 +1,11 @@
 Ext.define('CustomApp', {
     extend: 'Rally.app.App',
     componentCls: 'app',
-    launch: function() {
-    // create an array with nodes
-    this.add(Ext.create('Ext.container.Container',{id:'test',html:''}));
-    var nodes = new vis.DataSet([
-        {id: 1, label: 'Node 1'},
-        {id: 2, label: 'Node 2'},
-        {id: 3, label: 'Node 3'},
-        {id: 4, label: 'Node 4'},
-        {id: 5, label: 'Node 5'}
-    ]);
-    // create an array with edges
-    var edges = new vis.DataSet([
-        {from: 1, to: 3},
-        {from: 1, to: 2},
-        {from: 2, to: 4},
-        {from: 2, to: 5}
-    ]);
-    // provide the data in the vis format
-    var data = {
-        nodes: nodes,
-        edges: edges
-    };
-    var options = {};
-    // initialize your network!
-    var container = document.getElementById('test');
-    var bush = new vis.Network(container, data, options);
-    //this.down('#test').add(Ext.create(bush));
+    launch: function () {
+        //Write app code here
+        this.add(Ext.create('Ext.container.Container'),{style:'background:black',html:'<div id="cy"></div>'});
+        var cy = cytoscape({
+            container: document.getElementById('cy') // container to render in
+        });
     }
 });

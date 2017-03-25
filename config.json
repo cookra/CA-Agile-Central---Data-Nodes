@@ -3,16 +3,15 @@
     "className": "CustomApp",
     "server": "https://rally1.rallydev.com",
     "sdk": "2.1",
-    "html": [
-        "test.js",
-        "test.html"
-    ],
     "javascript": [
-        "../../Agile Central Builds/Agile Central Common/vis/vis.js",
+        "node_modules/cytoscape/dist/cytoscape.js",
         "App.js"
     ],
     "css": [
-        "../../Agile Central Builds/Agile Central Common/vis/vis.css",
+        "node_modules/cytoscape/dist/cytoscape.js",
         "app.css"
+    ],
+    "files": [
+        "div."
     ]
 }
