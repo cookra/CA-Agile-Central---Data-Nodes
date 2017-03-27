@@ -1,12 +1,24 @@
 .app {
-     /* Add app styles here */
-}
-.chart rect {
-  fill: steelblue;
+  /* Add app styles here */
 }
 
-.chart text {
-  fill: white;
-  font: 10px sans-serif;
-  text-anchor: end;
+.ashley {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+}
+.sigma-scene{
+  height:300px !important;
+}
+
+#sidebar {
+  bottom: 0;
+  right: 0;
+  width: 200px;
+  height: 150px;
+  position: absolute;
+  background-color: #999;
+  padding: 10px;
 }

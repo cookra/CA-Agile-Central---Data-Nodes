@@ -3,6 +3,22 @@ Ext.define('CustomApp', {
     componentCls: 'app',
     launch: function () {
 
+        this.add(Ext.create('Ext.panel.Panel', {
+            html: '<div id="container" class="megan"><div id="graph-container" class="ashley"></div></div>',
+            height: 600,
+            cls: 'test',
+            listeners: {
+                afterrender: function (cmp) {
+                    console.log('asdgf');
+                    this._build();
+                },
+                scope: this
+            },
+        }));
+
+    },
+    _build: function () {
+
 
         var i,
             s,

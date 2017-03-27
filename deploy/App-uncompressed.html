@@ -12541,64 +12541,72 @@
     extend: 'Rally.app.App',
     componentCls: 'app',
     launch: function () {
-        Ext.create('Ext.panel.Panel', {
-            title: 'Hello',
-            id: 'richardCook',
-            height: 1000,
-            html: '',
-            renderTo: Ext.getBody()
+
+        this.add(Ext.create('Ext.panel.Panel', {
+            html: '<div id="graph-container"></div>',
+            listeners: {
+                afterrender: function (cmp) {
+                    console.log('asdgf');
+                    this._build();
+                },
+                scope: this
+            },
+        }));
+
+    },
+    _build: function () {
+
+
+        var i,
+            s,
+            N = 100,
+            E = 500,
+            g = {
+                nodes: [],
+                edges: []
+            };
+
+        // Generate a random graph:
+        for (i = 0; i < N; i++)
+            g.nodes.push({
+                id: 'n' + i,
+                label: 'Node ' + i,
+                x: Math.random(),
+                y: Math.random(),
+                size: Math.random(),
+                color: '#666'
+            });
+
+        for (i = 0; i < E; i++)
+            g.edges.push({
+                id: 'e' + i,
+                source: 'n' + (Math.random() * N | 0),
+                target: 'n' + (Math.random() * N | 0),
+                size: Math.random(),
+                color: '#ccc'
+            });
+        // sigma.renderers.def = sigma.renderers.canvas
+        // Instantiate sigma:
+        s = new sigma({
+            graph: g,
+            container: 'graph-container'
         });
 
-var i,
-    s,
-    N = 100,
-    E = 500,
-    g = {
-      nodes: [],
-      edges: []
-    };
+        // Initialize the dragNodes plugin:
+        var dragListener = sigma.plugins.dragNodes(s, s.renderers[0]);
 
-// Generate a random graph:
-for (i = 0; i < N; i++)
-  g.nodes.push({
-    id: 'n' + i,
-    label: 'Node ' + i,
-    x: Math.random(),
-    y: Math.random(),
-    size: Math.random(),
-    color: '#666'
-  });
-
-for (i = 0; i < E; i++)
-  g.edges.push({
-    id: 'e' + i,
-    source: 'n' + (Math.random() * N | 0),
-    target: 'n' + (Math.random() * N | 0),
-    size: Math.random(),
-    color: '#ccc'
-  });
-// sigma.renderers.def = sigma.renderers.canvas
-// Instantiate sigma:
-s = new sigma({
-  graph: g,
-  container: 'graph-container'
-});
-
-// Initialize the dragNodes plugin:
-var dragListener = sigma.plugins.dragNodes(s, s.renderers[0]);
-
-dragListener.bind('startdrag', function(event) {
-  console.log(event);
-});
-dragListener.bind('drag', function(event) {
-  console.log(event);
-});
-dragListener.bind('drop', function(event) {
-  console.log(event);
-});
-dragListener.bind('dragend', function(event) {
-  console.log(event);
-});
+        dragListener.bind('startdrag', function (event) {
+            console.log(event);
+        });
+        dragListener.bind('drag', function (event) {
+            console.log(event);
+        });
+        dragListener.bind('drop', function (event) {
+            console.log(event);
+        });
+        dragListener.bind('dragend', function (event) {
+            console.log(event);
+        });
 
     }
 });
@@ -12617,20 +12625,26 @@ dragListener.bind('dragend', function(event) {
         .app {
   /* Add app styles here */
 }
-.chart rect {
-  fill: steelblue;
+#graph-container {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
 }
-.chart text {
-  fill: white;
-  font: 10px sans-serif;
-  text-anchor: end;
+#sidebar {
+  bottom: 0;
+  right: 0;
+  width: 200px;
+  height: 150px;
+  position: absolute;
+  background-color: #999;
+  padding: 10px;
 }
 
     </style>
 </head>
 <body>
-    <div id="container">
-</div>
-<div id="graph-container" style="height:100%;background:blue;"></div>
+    
 </body>
 </html>
